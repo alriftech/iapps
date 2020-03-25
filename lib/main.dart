@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iapps/styleguide.dart';
 import 'package:iapps/utils.dart';
+import 'package:iapps/widgets/moods.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 void main() => runApp(MyApp());
@@ -53,8 +54,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 _buildMoodsHolder(),
               ],
             ),
-            SizedBox(height: 60,),
-
+            SizedBox(
+              height: 60,
+            ),
           ],
         ),
       ),
@@ -132,12 +134,11 @@ class _MyHomePageState extends State<MyHomePage> {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.all(Radius.circular(15)),
-          boxShadow: [BoxShadow(
-            color: Colors.black12,
-            spreadRadius: 5.5,
-            blurRadius: 5.5
-          )],
+          boxShadow: [
+            BoxShadow(color: Colors.black12, spreadRadius: 5.5, blurRadius: 5.5)
+          ],
         ),
+        child: Moods(),
       ),
     );
   }
