@@ -52,7 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 _buildGreetings(),
                 _buildMoodsHolder(),
               ],
-            )
+            ),
+            SizedBox(height: 60,),
+
           ],
         ),
       ),
