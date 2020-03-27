@@ -7,9 +7,10 @@ class Server {
   String longname;
   String version;
   String IP;
+  int status;
   DateTime updated;
 
-  Server({this.id, this.shortname, this.longname, this.version, this.IP, this.updated});
+  Server({this.id, this.shortname, this.longname, this.version, this.IP, this.status, this.updated});
 
   factory Server.fromJson(json) {
     return Server(
@@ -18,6 +19,7 @@ class Server {
       longname: json['longName'].toString(),
       version: json['version'].toString(),
       IP: json['ip'].toString(),
+      status: int.parse(json['server'].toString()),
       updated: DateTime.parse(json['updated_at'].toString()),
     );
   }

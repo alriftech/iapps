@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:iapps/styleguide.dart';
 import 'package:iapps/utils.dart';
 import 'package:iapps/widgets/moods.dart';
 import 'package:iapps/widgets/dn/server.dart';
-import 'package:line_awesome_icons/line_awesome_icons.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,17 +31,24 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _selectedIndex = 0;
+  int _selectedBottomMenuIndex = 0;
+  List<Server> _servers = List<Server>();
 
-  void onTapped(int val) {
+  void onBottomMenuTapped(int val) {
     setState(() {
-      _selectedIndex = val;
+      _selectedBottomMenuIndex = val;
     });
   }
 
-  _getServerData() {
-    Server.getServers().then((servers) {
-      // return _buildDragonnestServerInfo();
+  @override
+  void didUpdateWidget(MyHomePage oldWidget) {
+    super.didUpdateWidget(oldWidget);
+
+    _servers.clear();
+    Server.getServers().then((val) {
+      setState(() {
+        _servers.addAll(val);
+      });
     });
   }
 
@@ -64,8 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   children: <Widget>[
                     _buildNotificationCard(),
                     _buildDragonnestServerTitle(),
-                    _buildDragonnestServerCard(),
-                    // _getServerData(),
+                    _buildDragonnestServerInfo(),
                   ],
                 ),
               ),
@@ -75,7 +82,7 @@ class _MyHomePageState extends State<MyHomePage> {
         bottomNavigationBar: BottomNavigationBar(
           showSelectedLabels: false,
           showUnselectedLabels: false,
-          currentIndex: _selectedIndex,
+          currentIndex: _selectedBottomMenuIndex,
           items: [
             BottomNavigationBarItem(
               icon: Icon(
@@ -99,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
               title: Text('1'),
             ),
           ],
-          onTap: onTapped,
+          onTap: onBottomMenuTapped,
         ),
       ),
     );
@@ -212,55 +219,60 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _buildDragonnestServerInfo() {
-    return Container();
-  }
-
-  _buildDragonnestServerCard() {
     return Container(
-      margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
-      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-      ),
-      child: Row(
-        children: <Widget>[
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+      child: new ListView.builder(
+        shrinkWrap: true,
+        itemBuilder: (context, index) {
+          return Container(
+            margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
+            padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Row(
               children: <Widget>[
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text(
-                      "Southeast Asia (SEA)",
-                      style: dnServerInfoNameStyle,
-                    ),
-                    Container(
-                      width: 15,
-                      height: 15,
-                      decoration: dnServerOnline,
-                    )
-                  ],
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Text(
+                            _servers[index].longname + " (" + _servers[index].shortname.toUpperCase() + ")",
+                            style: dnServerInfoNameStyle,
+                          ),
+                          Container(
+                            width: 15,
+                            height: 15,
+                            decoration: (_servers[index].status == 1 ? dnServerOnline : dnServerMaintenance),
+                          )
+                        ],
+                      ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Text("Versi " + _servers[index].version),
+                      SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "Diupdate pada " + DateFormat("dd-MMM-yyyy hh:mm").format(_servers[index].updated),
+                      ),
+                      SizedBox(
+                        height: 10,
+                      ),
+                      Text(_servers[index].IP, style: dnServerInfoIPStyle),
+                    ],
+                  ),
                 ),
-                SizedBox(
-                  height: 5,
-                ),
-                Text("Versi 123"),
-                SizedBox(
-                  height: 2,
-                ),
-                Text(
-                  "Diupdate pada 27 Maret 2020 12:00:00",
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text("127.127.127.127:3000", style: dnServerInfoIPStyle),
               ],
             ),
-          ),
-        ],
+          );
+        },
+        itemCount: _servers.length,
+        physics: const NeverScrollableScrollPhysics(),
       ),
     );
   }
