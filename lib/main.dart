@@ -47,13 +47,16 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             _buildTopStack(),
             SizedBox(
-              height: 60,
+              height: 50,
             ),
             Padding(
               padding: EdgeInsets.all(20),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[_buildNotificationCard()],
+                children: <Widget>[
+                  _buildNotificationCard(),
+                  _buildNextAppointementTitle()
+                ],
               ),
             ),
           ],
@@ -100,36 +103,6 @@ class _MyHomePageState extends State<MyHomePage> {
         _buildGreetings(),
         _buildMoodsHolder(),
       ],
-    );
-  }
-
-  _buildNotificationCard() {
-    return Container(
-      padding: EdgeInsets.all(12),
-      decoration: BoxDecoration(
-          color: lightColor, borderRadius: BorderRadius.circular(10)),
-      child: ListTile(
-        leading: Icon(
-          LineAwesomeIcons.calendar_check_o,
-          color: Colors.white,
-          size: 32,
-        ),
-        title: Text(
-          "Your visit with\nDr. Aisha",
-          style: notificationCardStyle,
-        ),
-        trailing: OutlineButton(
-          onPressed: () {},
-          color: Colors.transparent,
-          borderSide: BorderSide(color: Colors.white, width: 1.0),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          child: Text(
-            "Review",
-            style: notificationButtonStyle,
-          ),
-        ),
-      ),
     );
   }
 
@@ -180,6 +153,49 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         child: Moods(),
+      ),
+    );
+  }
+
+  _buildNotificationCard() {
+    return Container(
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+          color: lightColor, borderRadius: BorderRadius.circular(10)),
+      child: ListTile(
+        leading: Icon(
+          LineAwesomeIcons.calendar_check_o,
+          color: Colors.white,
+          size: 32,
+        ),
+        title: Text(
+          "Your visit with\nDr. Aisha",
+          style: notificationCardStyle,
+        ),
+        trailing: OutlineButton(
+          onPressed: () {},
+          color: Colors.transparent,
+          borderSide: BorderSide(color: Colors.white, width: 1.0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          child: Text(
+            "Review",
+            style: notificationButtonStyle,
+          ),
+        ),
+      ),
+    );
+  }
+
+  _buildNextAppointementTitle() {
+    return Container(
+      margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: <Widget>[
+          Text("Your Next Appointment", style: nextAppointementTitleStyle,),
+          Text("See All", style: nextAppointementSubitleStyle,)
+        ],
       ),
     );
   }
