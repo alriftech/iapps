@@ -45,17 +45,16 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
-            Stack(
-              alignment: AlignmentDirectional.topCenter,
-              overflow: Overflow.visible,
-              children: <Widget>[
-                _buildBackgroundCover(),
-                _buildGreetings(),
-                _buildMoodsHolder(),
-              ],
-            ),
+            _buildTopStack(),
             SizedBox(
               height: 60,
+            ),
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[_buildNotificationCard()],
+              ),
             ),
           ],
         ),
@@ -88,6 +87,48 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
         onTap: onTapped,
+      ),
+    );
+  }
+
+  Stack _buildTopStack() {
+    return Stack(
+      alignment: AlignmentDirectional.topCenter,
+      overflow: Overflow.visible,
+      children: <Widget>[
+        _buildBackgroundCover(),
+        _buildGreetings(),
+        _buildMoodsHolder(),
+      ],
+    );
+  }
+
+  _buildNotificationCard() {
+    return Container(
+      padding: EdgeInsets.all(12),
+      decoration: BoxDecoration(
+          color: lightColor, borderRadius: BorderRadius.circular(10)),
+      child: ListTile(
+        leading: Icon(
+          LineAwesomeIcons.calendar_check_o,
+          color: Colors.white,
+          size: 32,
+        ),
+        title: Text(
+          "Your visit with\nDr. Aisha",
+          style: notificationCardStyle,
+        ),
+        trailing: OutlineButton(
+          onPressed: () {},
+          color: Colors.transparent,
+          borderSide: BorderSide(color: Colors.white, width: 1.0),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+          child: Text(
+            "Review",
+            style: notificationButtonStyle,
+          ),
+        ),
       ),
     );
   }
