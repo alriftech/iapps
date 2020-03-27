@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Informate Apps',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.lightBlue,
       ),
       home: MyHomePage(),
     );
@@ -55,7 +55,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: <Widget>[
                   _buildNotificationCard(),
-                  _buildNextAppointementTitle()
+                  _buildDragonnestServerTitle(),
+                  _buildDragonnestServerInfo(),
                 ],
               ),
             ),
@@ -110,7 +111,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Container(
       height: 200.0,
       decoration: BoxDecoration(
-          gradient: purpleGradient,
+          gradient: blueGradient,
           borderRadius: BorderRadius.only(
               bottomLeft: Radius.circular(40),
               bottomRight: Radius.circular(40))),
@@ -125,12 +126,12 @@ class _MyHomePageState extends State<MyHomePage> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          Text("Hi, Rifqi", style: greetingsTitleStyle),
+          Text("Hai, Selamat datang!", style: greetingsTitleStyle),
           SizedBox(
             height: 5,
           ),
           Text(
-            "How are you feeling today?",
+            "Dalam aplikasi milik Informate.",
             style: greetingsSubtitleStyle,
           )
         ],
@@ -164,37 +165,82 @@ class _MyHomePageState extends State<MyHomePage> {
           color: lightColor, borderRadius: BorderRadius.circular(10)),
       child: ListTile(
         leading: Icon(
-          LineAwesomeIcons.calendar_check_o,
+          LineAwesomeIcons.newspaper_o,
           color: Colors.white,
           size: 32,
         ),
         title: Text(
-          "Your visit with\nDr. Aisha",
+          "Akan ada update pada tanggal\n01 Januari 2021",
           style: notificationCardStyle,
         ),
-        trailing: OutlineButton(
-          onPressed: () {},
-          color: Colors.transparent,
-          borderSide: BorderSide(color: Colors.white, width: 1.0),
-          shape:
-              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-          child: Text(
-            "Review",
-            style: notificationButtonStyle,
-          ),
-        ),
+
       ),
     );
   }
 
-  _buildNextAppointementTitle() {
+  _buildDragonnestServerTitle() {
     return Container(
       margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Text("Your Next Appointment", style: nextAppointementTitleStyle,),
-          Text("See All", style: nextAppointementSubitleStyle,)
+          Text(
+            "Server Tersedia",
+            style: nextAppointementTitleStyle,
+          ),
+          Text(
+            "Lihat Semua",
+            style: nextAppointementSubitleStyle,
+          )
+        ],
+      ),
+    );
+  }
+
+  _buildDragonnestServerInfo() {
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: <Widget>[
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text(
+                    "Southeast Asia (v123)",
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    width: 10,
+                    height: 10,
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle, color: Colors.lightGreen),
+                  )
+                ],
+              ),
+              SizedBox(
+                height: 5,
+              ),
+              Text("Online"),
+              Text("27 Maret 2020 12:00:00",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  )),
+              SizedBox(
+                height: 5,
+              ),
+              Text("127.127.127.127:3000"),
+            ],
+          ),
         ],
       ),
     );
