@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'utils.dart';
 
+const aboutTextStyle =
+    TextStyle(color: Colors.black, fontWeight: FontWeight.bold, fontSize: 20.0);
+
+const aboutSubtextStyle =
+    TextStyle(color: Colors.black, fontWeight: FontWeight.w300, fontSize: 15.0);
+
 const greetingsTitleStyle =
     TextStyle(color: Colors.white, fontSize: 30.0, fontWeight: FontWeight.w500);
 
