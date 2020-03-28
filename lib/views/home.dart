@@ -78,6 +78,7 @@ class _HomeState extends State<Home> {
           ),
         ),
         bottomNavigationBar: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           showSelectedLabels: false,
           showUnselectedLabels: false,
           currentIndex: _selectedBottomMenuIndex,
@@ -87,21 +88,28 @@ class _HomeState extends State<Home> {
                 LineAwesomeIcons.home,
                 size: 30.0,
               ),
-              title: Text('1'),
+              title: Text('Rumah'),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 LineAwesomeIcons.search,
                 size: 30.0,
               ),
-              title: Text('1'),
+              title: Text('Cari'),
             ),
             BottomNavigationBarItem(
               icon: Icon(
                 LineAwesomeIcons.gratipay,
                 size: 30.0,
               ),
-              title: Text('1'),
+              title: Text('Favorit'),
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(
+                LineAwesomeIcons.globe,
+                size: 30.0,
+              ),
+              title: Text('Tentang'),
             ),
           ],
           onTap: onBottomMenuTapped,
