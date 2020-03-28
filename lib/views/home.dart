@@ -25,22 +25,29 @@ class _HomeState extends State<Home> {
     });
   }
 
-  @override
-  void initState() {
-    super.initState();
-
+  void loadNews() {
     News.getNews().then((val) {
       setState(() {
         _news = val.news;
       });
     });
+  }
 
+  void loadServers() {
     _servers.clear();
     Server.getServers().then((val) {
       setState(() {
         _servers.addAll(val);
       });
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+
+    loadNews();
+    loadServers();
   }
 
   @override
@@ -63,7 +70,7 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     _buildNotificationCard(),
                     _buildDragonnestServerTitle(),
-                    _servers.length == 0 ? Center(child: CircularProgressIndicator()) : _buildDragonnestServerInfo()
+                    _buildDragonnestServerInfo(),
                   ],
                 ),
               ),
@@ -196,11 +203,12 @@ class _HomeState extends State<Home> {
             style: dnServerTitleStyle,
           ),
           GestureDetector(
-//            onTap: () {
-//              _getServerData();
-//            },
+            onTap: () {
+              loadServers();
+              _buildDragonnestServerInfo();
+            },
             child: Text(
-              "Lihat Semua",
+              "Muat Ulang",
               style: dnServerSubtitleStyle,
             ),
           ),
@@ -211,7 +219,9 @@ class _HomeState extends State<Home> {
 
   _buildDragonnestServerInfo() {
     return Container(
-      child: ListView.builder(
+      child: _servers.length == 0
+          ? Center(child: CircularProgressIndicator())
+          : ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Container(
