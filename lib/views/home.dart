@@ -15,15 +15,8 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int _selectedBottomMenuIndex = 0;
   String _news = ".....";
   List<Server> _servers = List<Server>();
-
-  void onBottomMenuTapped(int val) {
-    setState(() {
-      _selectedBottomMenuIndex = val;
-    });
-  }
 
   void loadNews() {
     News.getNews().then((val) {
@@ -52,67 +45,28 @@ class _HomeState extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: mainBgColor,
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: <Widget>[
-              _buildTopStack(),
-              SizedBox(
-                height: 50,
-              ),
-              Padding(
-                padding: EdgeInsets.all(20),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: <Widget>[
-                    _buildNotificationCard(),
-                    _buildDragonnestServerTitle(),
-                    _buildDragonnestServerInfo(),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ),
-        bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          currentIndex: _selectedBottomMenuIndex,
-          items: [
-            BottomNavigationBarItem(
-              icon: Icon(
-                LineAwesomeIcons.home,
-                size: 30.0,
-              ),
-              title: Text('Rumah'),
+    return Scaffold(
+      backgroundColor: mainBgColor,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: <Widget>[
+            _buildTopStack(),
+            SizedBox(
+              height: 50,
             ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                LineAwesomeIcons.search,
-                size: 30.0,
+            Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: <Widget>[
+                  _buildNotificationCard(),
+                  _buildDragonnestServerTitle(),
+                  _buildDragonnestServerInfo(),
+                ],
               ),
-              title: Text('Cari'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                LineAwesomeIcons.gratipay,
-                size: 30.0,
-              ),
-              title: Text('Favorit'),
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(
-                LineAwesomeIcons.globe,
-                size: 30.0,
-              ),
-              title: Text('Tentang'),
             ),
           ],
-          onTap: onBottomMenuTapped,
         ),
       ),
     );
