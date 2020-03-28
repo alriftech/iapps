@@ -18,6 +18,7 @@ class News {
     var apiResult = await http.get(apiURL);
     var jsonObject = json.decode(apiResult.body);
 
+    print("[INFO] : Get news data.");
     return News.fromJson(jsonObject);
   }
 }

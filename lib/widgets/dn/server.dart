@@ -34,6 +34,7 @@ class Server {
     for (var server in jsonObject)
       servers.add(Server.fromJson(server));
 
+    print("[INFO] : Get server data.");
     return servers;
   }
 }
