@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:iapps/utils.dart';
 
 class News {
   String news;
@@ -13,7 +14,7 @@ class News {
   }
 
   static Future getNews() async {
-    String apiURL = "https://alriftech.com/api/v2/bot/aisha/news";
+    String apiURL = API_ENDPOINT + "/news";
 
     var apiResult = await http.get(apiURL);
     var jsonObject = json.decode(apiResult.body);

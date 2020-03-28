@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
+import 'package:iapps/utils.dart';
 
 class Server {
   int id;
@@ -25,7 +26,7 @@ class Server {
   }
 
   static Future<List<Server>> getServers() async {
-    String apiURL = "https://alriftech.com/api/v2/bot/aisha/server";
+    String apiURL = API_ENDPOINT + "/server";
 
     var apiResult = await http.get(apiURL);
     var jsonObject = json.decode(apiResult.body);

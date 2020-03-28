@@ -35,4 +35,5 @@ const redGradient = LinearGradient(
     end: Alignment.centerRight
 );
 
-const USER_IMAGE = "https://avatars3.githubusercontent.com/u/13685481";
+const API_ENDPOINT  = "https://alriftech.com/api/v2/bot/aisha";
+const USER_IMAGE    = "https://avatars3.githubusercontent.com/u/13685481";
