@@ -4,6 +4,7 @@ import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:iapps/styleguide.dart';
 import 'package:iapps/utils.dart';
 import 'package:iapps/widgets/moods.dart';
+import 'package:iapps/widgets/news.dart';
 import 'package:iapps/widgets/dn/server.dart';
 
 class Home extends StatefulWidget {
@@ -15,6 +16,7 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   int _selectedBottomMenuIndex = 0;
+  String _news = ".....";
   List<Server> _servers = List<Server>();
 
   void onBottomMenuTapped(int val) {
@@ -26,6 +28,12 @@ class _HomeState extends State<Home> {
   @override
   void initState() {
     super.initState();
+
+    News.getNews().then((val) {
+      setState(() {
+        _news = val.news;
+      });
+    });
 
     _servers.clear();
     Server.getServers().then((val) {
@@ -55,7 +63,7 @@ class _HomeState extends State<Home> {
                   children: <Widget>[
                     _buildNotificationCard(),
                     _buildDragonnestServerTitle(),
-                    _buildDragonnestServerInfo(),
+                    _servers.length == 0 ? Center(child: CircularProgressIndicator()) : _buildDragonnestServerInfo()
                   ],
                 ),
               ),
@@ -170,7 +178,7 @@ class _HomeState extends State<Home> {
           size: 32,
         ),
         title: Text(
-          "Akan ada update pada tanggal\n01 Januari 2021",
+          _news,
           style: notificationCardStyle,
         ),
       ),
@@ -203,9 +211,7 @@ class _HomeState extends State<Home> {
 
   _buildDragonnestServerInfo() {
     return Container(
-      child: _servers == null
-          ? new Center(child: CircularProgressIndicator())
-          : ListView.builder(
+      child: ListView.builder(
               shrinkWrap: true,
               itemBuilder: (context, index) {
                 return Container(
