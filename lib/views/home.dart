@@ -4,8 +4,8 @@ import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:iapps/styleguide.dart';
 import 'package:iapps/utils.dart';
 import 'package:iapps/widgets/moods.dart';
-import 'package:iapps/widgets/news.dart';
-import 'package:iapps/widgets/dn/server.dart';
+import 'package:iapps/models/news.dart';
+import 'package:iapps/models/server.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
