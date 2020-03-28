@@ -34,18 +34,6 @@ class _HomeState extends State<Home> {
       });
     });
   }
-//
-//  @override
-//  void didUpdateWidget(MyHomePage oldWidget) {
-//    super.didUpdateWidget(oldWidget);
-//
-//    _servers.clear();
-//    Server.getServers().then((val) {
-//      setState(() {
-//        _servers.addAll(val);
-//      });
-//    });
-//  }
 
   @override
   Widget build(BuildContext context) {
@@ -215,60 +203,71 @@ class _HomeState extends State<Home> {
 
   _buildDragonnestServerInfo() {
     return Container(
-      child: _servers == null ? new Center(child: CircularProgressIndicator()) : ListView.builder(
-        shrinkWrap: true,
-        itemBuilder: (context, index) {
-          return Container(
-            margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
-            padding: EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Row(
-              children: <Widget>[
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      child: _servers == null
+          ? new Center(child: CircularProgressIndicator())
+          : ListView.builder(
+              shrinkWrap: true,
+              itemBuilder: (context, index) {
+                return Container(
+                  margin: EdgeInsets.only(top: 5.0, bottom: 5.0),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 14.0, horizontal: 18.0),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Row(
                     children: <Widget>[
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: <Widget>[
-                          Text(
-                            _servers[index].longname + " (" + _servers[index].shortname.toUpperCase() + ")",
-                            style: dnServerInfoNameStyle,
-                          ),
-                          Container(
-                            width: 15,
-                            height: 15,
-                            decoration: (_servers[index].status == 1 ? dnServerOnline : dnServerMaintenance),
-                          )
-                        ],
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  _servers[index].longname +
+                                      " (" +
+                                      _servers[index].shortname.toUpperCase() +
+                                      ")",
+                                  style: dnServerInfoNameStyle,
+                                ),
+                                Container(
+                                  width: 15,
+                                  height: 15,
+                                  decoration: (_servers[index].status == 1
+                                      ? dnServerOnline
+                                      : dnServerMaintenance),
+                                )
+                              ],
+                            ),
+                            SizedBox(
+                              height: 5,
+                            ),
+                            Text("Versi " + _servers[index].version),
+                            SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              "Diupdate pada " +
+                                  DateFormat("dd-MMM-yyyy hh:mm")
+                                      .format(_servers[index].updated),
+                            ),
+                            SizedBox(
+                              height: 10,
+                            ),
+                            Text(_servers[index].IP,
+                                style: dnServerInfoIPStyle),
+                          ],
+                        ),
                       ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text("Versi " + _servers[index].version),
-                      SizedBox(
-                        height: 2,
-                      ),
-                      Text(
-                        "Diupdate pada " + DateFormat("dd-MMM-yyyy hh:mm").format(_servers[index].updated),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(_servers[index].IP, style: dnServerInfoIPStyle),
                     ],
                   ),
-                ),
-              ],
+                );
+              },
+              itemCount: _servers.length,
+              physics: const NeverScrollableScrollPhysics(),
             ),
-          );
-        },
-        itemCount: _servers.length,
-        physics: const NeverScrollableScrollPhysics(),
-      ),
     );
   }
 }

@@ -12,13 +12,9 @@ class _SplashScreenState extends State<SplashScreen> {
   _startSplash() async {
     var duration = Duration(seconds: 5);
     return Timer(duration, () {
-      Navigator.of(context).pushReplacement(
-        MaterialPageRoute(
-          builder: (_) {
-            return Home();
-          }
-        )
-      );
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (_) {
+        return Home();
+      }));
     });
   }
 
@@ -33,7 +29,11 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: darkColor,
       body: Center(
-        child: Image.asset("images/logo.png", width: 200.0, height: 100.0,),
+        child: Image.asset(
+          "images/logo.png",
+          width: 200.0,
+          height: 100.0,
+        ),
       ),
     );
   }
