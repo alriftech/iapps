@@ -19,6 +19,9 @@ const greetingsSubtitleStyle =
 const notificationCardStyle =
     TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.w500);
 
+const notificationCardBlackStyle =
+    TextStyle(color: Colors.black, fontSize: 14.0, );
+
 const notificationButtonStyle =
     TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.w300);
 
