@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:iapps/widgets/nb.dart';
 import 'package:intl/intl.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:iapps/styleguide.dart';
@@ -156,7 +157,7 @@ class _HomeState extends State<Home> {
 
   _buildDragonnestServerTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 20.0, bottom: 20.0),
+      margin: EdgeInsets.only(top: 20.0, bottom: 0.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
