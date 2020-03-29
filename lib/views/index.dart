@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:iapps/views/home.dart';
+import 'package:iapps/views/rob.dart';
 import 'package:iapps/views/about.dart';
 
 class Index extends StatefulWidget {
@@ -12,7 +13,7 @@ class _IndexState extends State<Index> {
   int _currentIndex = 0;
   final List<Widget> _children = [
     Home(),
-    About(),
+    Rob(),
     About(),
     About(),
   ];
