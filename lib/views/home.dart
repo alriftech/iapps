@@ -157,7 +157,7 @@ class _HomeState extends State<Home> {
 
   _buildDragonnestServerTitle() {
     return Container(
-      margin: EdgeInsets.only(top: 20.0, bottom: 0.0),
+      margin: EdgeInsets.only(top: 20.0),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
