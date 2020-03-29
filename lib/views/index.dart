@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:line_awesome_icons/line_awesome_icons.dart';
 import 'package:iapps/views/home.dart';
 import 'package:iapps/views/rob.dart';
+import 'package:iapps/views/covid.dart';
 import 'package:iapps/views/about.dart';
 
 class Index extends StatefulWidget {
@@ -14,7 +15,7 @@ class _IndexState extends State<Index> {
   final List<Widget> _children = [
     Home(),
     Rob(),
-    About(),
+    Covid(),
     About(),
   ];
 
@@ -43,14 +44,14 @@ class _IndexState extends State<Index> {
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              LineAwesomeIcons.search,
+              LineAwesomeIcons.bullseye,
               size: 30.0,
             ),
             title: Text('Cari'),
           ),
           BottomNavigationBarItem(
             icon: Icon(
-              LineAwesomeIcons.gratipay,
+              LineAwesomeIcons.ambulance,
               size: 30.0,
             ),
             title: Text('Favorit'),
