@@ -13,7 +13,7 @@ class Covid19 {
 
   factory Covid19.fromJson(json) {
     return Covid19(
-      lastUpdate: DateTime.parse(json['metadata']['lastUpdatedAt'].toString()),
+      lastUpdate: DateTime.parse(json['metadata']['lastUpdatedAt'].toString()).add(Duration(hours: 7)),
       confirmed: int.parse(json['confirmed']['value'].toString()),
       deaths: int.parse(json['deaths']['value'].toString()),
       recovered: int.parse(json['recovered']['value'].toString()),
