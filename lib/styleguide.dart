@@ -19,8 +19,10 @@ const greetingsSubtitleStyle =
 const notificationCardStyle =
     TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.w500);
 
-const notificationCardBlackStyle =
-    TextStyle(color: Colors.black, fontSize: 14.0, );
+const notificationCardBlackStyle = TextStyle(
+  color: Colors.black,
+  fontSize: 14.0,
+);
 
 const notificationButtonStyle =
     TextStyle(color: Colors.white, fontSize: 14.0, fontWeight: FontWeight.w300);
@@ -36,6 +38,12 @@ const covidTitleStyle =
 
 const covidSubtitleStyle =
     TextStyle(color: lightColor, fontSize: 16.0, fontWeight: FontWeight.w500);
+
+const covidCaseTitleStyle =
+    TextStyle(fontSize: 15, fontWeight: FontWeight.w400);
+
+const covidCaseCountStyle =
+    TextStyle(fontSize: 40, fontWeight: FontWeight.w600);
 
 const dnServerInfoNameStyle = TextStyle(
   fontWeight: FontWeight.bold,
