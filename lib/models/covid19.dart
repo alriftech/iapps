@@ -28,7 +28,6 @@ class Covid19 {
     var jsonObject = json.decode(apiResult.body);
 
     print("[INFO] : Get covid data.");
-    print(jsonObject['metadata']['lastUpdatedAt'].toString());
     return Covid19.fromJson(jsonObject);
   }
 }
