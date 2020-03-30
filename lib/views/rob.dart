@@ -119,7 +119,7 @@ class _RobState extends State<Rob> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: <Widget>[
-                      Text("Nickname : " + _robs[index].nama, style: TextStyle(fontWeight: FontWeight.bold),),
+                      Text("Nickname: " + _robs[index].nama, style: TextStyle(fontWeight: FontWeight.bold),),
                       SizedBox(height: 2,),
                       Text("Class: " + _robs[index].job),
                       SizedBox(height: 10,),
