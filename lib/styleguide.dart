@@ -31,6 +31,12 @@ const dnServerTitleStyle =
 const dnServerSubtitleStyle =
     TextStyle(color: lightColor, fontSize: 16.0, fontWeight: FontWeight.w500);
 
+const covidTitleStyle =
+    TextStyle(color: Colors.black, fontSize: 16.0, fontWeight: FontWeight.w500);
+
+const covidSubtitleStyle =
+    TextStyle(color: lightColor, fontSize: 16.0, fontWeight: FontWeight.w500);
+
 const dnServerInfoNameStyle = TextStyle(
   fontWeight: FontWeight.bold,
 );
